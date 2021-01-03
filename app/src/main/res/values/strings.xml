@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">GreenPure</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <string name="title_aire">Mi aire</string>
+    <string name="title_map">Mapas</string>
+    <string name="title_estadistica">Estadisticas</string>
 </resources>
