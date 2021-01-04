@@ -15,7 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GreenPure">
-        <activity android:name=".LinearChartAcitivity"></activity>
+        <activity
+            android:name=".MainActivity2"
+            android:label="@string/title_activity_main2"></activity>
+        <activity android:name=".LinearChartAcitivity" />
         <activity android:name=".BarChartActivity2" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

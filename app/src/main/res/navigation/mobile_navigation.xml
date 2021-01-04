@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_aire">
+
+    <fragment
+        android:id="@+id/navigation_aire"
+        android:name="com.miempresa.greenpure.ui.aire.AireFragment"
+        android:label="@string/title_aire"
+        tools:layout="@layout/fragment_aire" />
+
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.miempresa.greenpure.ui.map.MapFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_map" />
+
+    <fragment
+        android:id="@+id/navigation_estadistica"
+        android:name="com.miempresa.greenpure.ui.estadistica.EstadisticaFragment"
+        android:label="@string/title_estadistica"
+        tools:layout="@layout/fragment_estadistica" />
+</navigation>
