@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.miempresa.greenpure.R
 
 class AireFragment : Fragment() {
@@ -21,11 +23,29 @@ class AireFragment : Fragment() {
     ): View? {
         aireViewModel =
                 ViewModelProvider(this).get(AireViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_aire, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        aireViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        val view:View = inflater.inflate(R.layout.fragment_aire, container, false)
+
+        var listaLugares: RecyclerView = view.findViewById(R.id.places_list)
+        listaLugares.layoutManager = LinearLayoutManager(context)
+
+        var llenarLista = ArrayList<Elementos>()
+
+        llenarLista.add(
+                Elementos("Icono")
+        )
+        llenarLista.add(
+                Elementos("Icono")
+        )
+        llenarLista.add(
+                Elementos("Icono")
+        )
+        llenarLista.add(
+                Elementos("Icono")
+                )
+
+        val adapter = AdaptadorCardAire(llenarLista)
+        listaLugares.adapter = adapter
+
+        return view
     }
 }

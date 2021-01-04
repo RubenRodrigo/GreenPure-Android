@@ -5,4 +5,8 @@
     <string name="title_aire">Mi aire</string>
     <string name="title_map">Mapas</string>
     <string name="title_estadistica">Estadisticas</string>
+    <string name="state_good">Bueno</string>
+    <string name="state_moderate">Moderado</string>
+    <string name="state_regular">Regular</string>
+    <string name="state_bad">Malo</string>
 </resources>
