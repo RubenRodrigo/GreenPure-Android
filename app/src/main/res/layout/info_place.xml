@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:background="@drawable/rounded_corner_calidad"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#3BB340"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgEstadoInfo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="center_horizontal"
+            android:src="@drawable/ic_good_air" />
+
+        <TextView
+            android:id="@+id/lblCalidadInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="21"
+            android:textSize="25dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/lblLugarInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            android:text="Plaza de armas"/>
+
+        <TextView
+            android:id="@+id/lblEstadoInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Estado: Bueno"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/lblTemperaturaInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Temperatura: 27º"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</LinearLayout>

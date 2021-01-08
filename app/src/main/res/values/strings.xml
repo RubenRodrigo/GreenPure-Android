@@ -9,4 +9,6 @@
     <string name="state_moderate">Moderado</string>
     <string name="state_regular">Regular</string>
     <string name="state_bad">Malo</string>
+    <string name="urlAPI">http://104.131.163.197</string>
+    <string name="apiKey">AIzaSyCwYPea-RgeoOJbGW6qXp2kaYxx6d0mvgk</string>
 </resources>
