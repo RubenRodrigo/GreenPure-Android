@@ -65,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:src="@drawable/ic_good_air" />
+                    app:srcCompat="@drawable/ic_good_air" />
 
                 <TextView
                     android:id="@+id/lblCalidad"

@@ -4,23 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
+    android:padding="10dp"
+    tools:context=".ui.modificar.ModificarLugar">
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textColor="@color/white"
-        android:textSize="45dp"
-        android:text="GreenPure" />
+        android:textSize="25dp"
+        android:text="Mis Ubicaciones" />
 
-    <Button
-        android:id="@+id/btnVerMenuBottom"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaUbicaciones"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ver menu "/>
+        android:scrollbars="vertical"/>
 </LinearLayout>
