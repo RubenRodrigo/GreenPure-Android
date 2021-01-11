@@ -14,22 +14,6 @@ class MainActivity : AppCompatActivity() {
         val policy =
             StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
-
-        btnVerMapa.setOnClickListener{
-            val intent = Intent(this, MapsActivity::class.java)
-            startActivity(intent)
-        }
-
-        btnVerGraficaBar.setOnClickListener{
-            val intent = Intent(this, BarChartActivity2::class.java)
-            startActivity(intent)
-        }
-
-        btnVerGraficaLinear.setOnClickListener{
-            val intent = Intent(this, LinearChartAcitivity::class.java)
-            startActivity(intent)
-        }
-
         btnVerMenuBottom.setOnClickListener{
             val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)

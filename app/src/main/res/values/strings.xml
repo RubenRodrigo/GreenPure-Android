@@ -11,4 +11,6 @@
     <string name="state_bad">Malo</string>
     <string name="urlAPI">http://104.131.163.197</string>
     <string name="apiKey">AIzaSyCwYPea-RgeoOJbGW6qXp2kaYxx6d0mvgk</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -87,8 +87,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="28dp"
-                    android:textStyle="bold"
+                    android:textSize="25dp"
                     android:textColor="@color/black"
                     android:text="Calidad del Aire"/>
 
@@ -105,13 +104,81 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="28dp"
-                    android:textStyle="bold"
+                    android:textSize="25dp"
                     android:textColor="@color/black"
                     android:text="Temperatura"/>
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/infoLinearChartTemperatura"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="25dp"
+                    android:textColor="@color/black"
+                    android:text="Concentracion de Polvo"/>
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/infoLinearChartConcentracion"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="25dp"
+                    android:textColor="@color/black"
+                    android:text="Humedad"/>
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/infoLinearChartHumedad"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="25dp"
+                    android:textColor="@color/black"
+                    android:text="Humo"/>
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/infoLinearChartHumo"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="25dp"
+                    android:textColor="@color/black"
+                    android:text="Metano"/>
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/infoLinearChartMetano"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"/>
             </LinearLayout>

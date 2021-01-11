@@ -8,7 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.github.mikephil.charting.charts.LineChart
 import com.miempresa.greenpure.R
+import kotlinx.android.synthetic.main.activity_info_aire.*
 
 class AdaptadorCardAire(val ListaElementos: ArrayList<Elementos>): RecyclerView.Adapter<AdaptadorCardAire.ViewHolder>(){
 
@@ -19,12 +21,6 @@ class AdaptadorCardAire(val ListaElementos: ArrayList<Elementos>): RecyclerView.
         val fCalidad = itemView.findViewById<TextView>(R.id.lblCalidad)
         val fCiudad = itemView.findViewById<TextView>(R.id.lblCiudad)
         val fDepartamento = itemView.findViewById<TextView>(R.id.lblDepartamento)
-        val fDiaAyer = itemView.findViewById<TextView>(R.id.lblDiaAyer)
-        val fDiaHoy = itemView.findViewById<TextView>(R.id.lblDiaHoy)
-        val fDiaManana = itemView.findViewById<TextView>(R.id.lblDiaManana)
-        val fCalidadDiaAyer = itemView.findViewById<TextView>(R.id.lblCalidadDiaAyer)
-        val fCalidadDiaHoy = itemView.findViewById<TextView>(R.id.lblCalidadDiaHoy)
-        val fCalidadDiaManana = itemView.findViewById<TextView>(R.id.lblCalidadDiaManana)
         val fFecha = itemView.findViewById<TextView>(R.id.lblUltimaActualizacion)
     }
 
@@ -39,7 +35,6 @@ class AdaptadorCardAire(val ListaElementos: ArrayList<Elementos>): RecyclerView.
         holder?.fCalidad?.text= 21.toString()
         holder?.fCiudad?.text=ListaElementos[position].lugar
         holder?.fDepartamento?.text=ListaElementos[position].lugar
-        holder?.fFecha?.text=ListaElementos[position].fecha
 
         holder.itemView.setOnClickListener(){
             val intent = Intent(holder.itemView.context, InfoAire::class.java)

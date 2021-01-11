@@ -24,12 +24,12 @@ import org.json.JSONException
 class InfoAire : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_info_aire)
         val bundle: Bundle ? = intent.extras
         if (bundle!=null) {
             var id = bundle.getString("id").toString()
             cargarData(id)
         }
-        setContentView(R.layout.activity_info_aire)
         val visitors: ArrayList<Entry> = ArrayList()
         visitors.add(Entry(2015f, 10f))
         visitors.add(Entry(2016f, 12f))
@@ -44,10 +44,17 @@ class InfoAire : AppCompatActivity() {
         visitors.add(Entry(2025f, 15f))
         visitors.add(Entry(2026f, 13f))
 
-        var linearDataSet = LineDataSet(visitors, "Visitors")
-        linearDataSet.setColors(ColorTemplate.MATERIAL_COLORS.asList())
+        /*var linearDataSet = LineDataSet(visitors, "Visitors")
         linearDataSet.setValueTextColor(Color.BLACK)
         linearDataSet.valueTextSize = 16f
+        linearDataSet.setDrawHighlightIndicators(false)
+        linearDataSet.setDrawCircles(false)
+        linearDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER*/
+
+        var linearDataSet = LineDataSet(visitors, "")
+        linearDataSet.setDrawCircles(false)
+        linearDataSet.setValueTextSize(0f)
+        linearDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
         /*linearDataSet.setDrawFilled(true)
         if(Utils.getSDKInt() >= 18){
             val gradientDrawable = GradientDrawable(
@@ -65,10 +72,27 @@ class InfoAire : AppCompatActivity() {
         val linearData = LineData(linearDataSet)
 
         infoLinearChartCalidad.setData(linearData)
-        infoLinearChartCalidad.animateY(2000)
+        infoLinearChartCalidad.animateY(1000)
 
         infoLinearChartTemperatura.setData(linearData)
-        infoLinearChartTemperatura.animateY(2000)
+        infoLinearChartTemperatura.animateY(1000)
+
+        infoLinearChartConcentracion.setData(linearData)
+        infoLinearChartConcentracion.animateY(1000)
+
+        infoLinearChartHumedad.setData(linearData)
+        infoLinearChartHumedad.animateY(1000)
+
+        infoLinearChartHumo.setData(linearData)
+        infoLinearChartHumo.animateY(1000)
+
+        infoLinearChartMetano.setData(linearData)
+        infoLinearChartMetano.animateY(1000)
+
+    }
+
+    fun crearGrafica(){
+
     }
 
     fun cargarData(id: String){

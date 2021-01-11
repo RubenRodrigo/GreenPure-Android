@@ -1,6 +1,6 @@
 package com.miempresa.greenpure.ui.aire
 
-import java.sql.Date
+import com.github.mikephil.charting.data.LineData
 
 data class Elementos(
         val id: Int,
@@ -8,5 +8,5 @@ data class Elementos(
         val humedad: Double, val temperatura: Double,
         val calor: Double, val concentracion: Double,
         val sensorHumo: Boolean, val sensorMetano: Boolean,
-        val fecha: String
+        val fecha: String,
 )
