@@ -1,61 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="5dp"
-    android:background="@drawable/rounded_corner_calidad"
-    android:orientation="horizontal">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#3BB340"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imgEstadoInfo"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:gravity="center_horizontal"
-            android:src="@drawable/ic_good_air" />
-
-        <TextView
-            android:id="@+id/lblCalidadInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:padding="5dp"
-            android:text="21"
-            android:textSize="25dp"
-            android:textColor="@color/black"/>
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner_calidad"
         android:padding="5dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/lblLugarInfo"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/contenedorInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:textColor="@color/black"
-            android:text="Plaza de armas"/>
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/lblEstadoInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Estado: Bueno"
-            android:textColor="@color/black" />
+            <ImageView
+                android:id="@+id/imgEstadoInfo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:gravity="center_horizontal"
+                app:srcCompat="@drawable/ic_good_air" />
 
-        <TextView
-            android:id="@+id/lblTemperaturaInfo"
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Temperatura: 27º"
-            android:textColor="@color/black" />
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lblDistritoInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:text="Plaza de armas"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lblCalidadInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:padding="5dp"
+                    android:text="21"
+                    android:textSize="25dp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/lblEstadoInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:text="Bueno"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -9,7 +9,6 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.location.Address
 import android.location.Geocoder
-import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,8 +19,6 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.Volley
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -41,6 +38,11 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickL
     private var mapView: View? = null
     private lateinit var mMap: GoogleMap
     private val TAG: String = "MapFragment"
+
+    val GOOD_AIR = 30
+    val MODERATE_AIR = 50
+    val REGULAR_AIR = 70
+    var CALIDAD_ESTADO = "NaN"
 
     override fun onMapReady(googleMap: GoogleMap?) {
         if (googleMap != null) {
@@ -84,10 +86,10 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickL
         // To call API
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(-16.4002619, -71.5630447), 10f))
         mMap.setInfoWindowAdapter(CustomInfoWindowAdapter(LayoutInflater.from(getActivity())));
-        agregarMarcador(-34.0, 151.0, "Sydney", "Bueno", "25", "1")
-        agregarMarcador(-16.3988084, -71.5390943, "Plaza de armas", "Bueno", "25", "2")
-        agregarMarcador(-16.3446185, -71.5690884, "Cerro Colorado", "Regular", "35", "3")
-        agregarMarcador(-16.3874759, -71.5439161, "Mirador de Yanahuara", "Bueno", "25", "4")
+        agregarMarcador(-34.0, 151.0, "Sydney", "95", "23","1")
+        agregarMarcador(-16.3988084, -71.5390943, "Plaza de armas",  "25", "23", "2")
+        agregarMarcador(-16.3446185, -71.5690884, "Cerro Colorado",  "35", "23","3")
+        agregarMarcador(-16.3874759, -71.5439161, "Mirador de Yanahuara",  "65", "23","4")
 
         mMap.setOnInfoWindowClickListener(this)
     }
@@ -149,13 +151,14 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickL
     fun agregarMarcador(
             lat: Double,
             long: Double,
-            lugar: String,
-            estado: String,
+            distrito: String,
+            calidad: String,
             temperatura: String,
             id: String,
     ) {
 
-        var markerInfo: MarkerInfo = MarkerInfo(lugar, estado, temperatura)
+        val img = calidadAireMarcador(calidad.toInt())
+        var markerInfo = MarkerInfo(distrito, CALIDAD_ESTADO, calidad, temperatura)
         val gson = Gson()
         val markerInfoString: String = gson.toJson(markerInfo)
         val marker = mMap.addMarker(
@@ -164,7 +167,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickL
                         .icon(context?.let {
                             bitmapDescriptorFromVector(
                                     it,
-                                    R.drawable.ic_regular_place
+                                    img
                             )
                         })
                         .title(id)
@@ -172,6 +175,29 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickL
         )
         marker.tag = 0
 
+    }
+
+    fun calidadAireMarcador(calidad: Int): Int {
+        when{
+            calidad in 0..GOOD_AIR -> {
+                CALIDAD_ESTADO = "Bueno"
+                return R.drawable.ic_good_place
+            }
+            calidad in GOOD_AIR..MODERATE_AIR -> {
+                CALIDAD_ESTADO = "Moderado"
+                return R.drawable.ic_moderate_place
+            }
+            calidad in MODERATE_AIR..REGULAR_AIR -> {
+                CALIDAD_ESTADO = "Regular"
+                return R.drawable.ic_regular_place
+            }
+            calidad > REGULAR_AIR -> {
+                CALIDAD_ESTADO = "Mala"
+                return R.drawable.ic_bad_place
+            }
+            else -> return R.drawable.ic_good_place
+        }
+        return R.drawable.ic_good_place
     }
 
     // Convert images

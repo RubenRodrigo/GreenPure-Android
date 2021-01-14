@@ -1,12 +1,18 @@
 package com.miempresa.greenpure.ui.aire
 
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.charts.LineChart
 import com.miempresa.greenpure.R
@@ -22,6 +28,7 @@ class AdaptadorCardAire(val ListaElementos: ArrayList<Elementos>): RecyclerView.
         val fCiudad = itemView.findViewById<TextView>(R.id.lblCiudad)
         val fDepartamento = itemView.findViewById<TextView>(R.id.lblDepartamento)
         val fFecha = itemView.findViewById<TextView>(R.id.lblUltimaActualizacion)
+        val fContenedor = itemView.findViewById<LinearLayout>(R.id.contenedorResumen)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdaptadorCardAire.ViewHolder {
@@ -31,10 +38,18 @@ class AdaptadorCardAire(val ListaElementos: ArrayList<Elementos>): RecyclerView.
 
     override fun onBindViewHolder(holder: AdaptadorCardAire.ViewHolder, position: Int) {
         holder?.fTemperatura?.text=ListaElementos[position].temperatura.toString()
-        holder?.fEstado?.text= "Bueno"
-        holder?.fCalidad?.text= 21.toString()
-        holder?.fCiudad?.text=ListaElementos[position].lugar
+        holder?.fEstado?.text= ListaElementos[position].calidadEstado
+        holder?.fCalidad?.text= ListaElementos[position].calidad.toString()
+        holder?.fImagen?.setImageResource(ListaElementos[position].imagen)
+        holder?.fCiudad?.text=ListaElementos[position].ubicacion
         holder?.fDepartamento?.text=ListaElementos[position].lugar
+
+        when(ListaElementos[position].calidadEstado){
+            "Bueno" -> holder?.fContenedor.setBackgroundColor(ContextCompat.getColor(holder?.itemView.context, R.color.good))
+            "Moderado" -> holder?.fContenedor.setBackgroundColor(ContextCompat.getColor(holder?.itemView.context, R.color.moderate))
+            "Regular" -> holder?.fContenedor.setBackgroundColor(ContextCompat.getColor(holder?.itemView.context, R.color.regular))
+            "Malo" -> holder?.fContenedor.setBackgroundColor(ContextCompat.getColor(holder?.itemView.context, R.color.bad))
+        }
 
         holder.itemView.setOnClickListener(){
             val intent = Intent(holder.itemView.context, InfoAire::class.java)
@@ -46,5 +61,6 @@ class AdaptadorCardAire(val ListaElementos: ArrayList<Elementos>): RecyclerView.
     override fun getItemCount(): Int {
         return ListaElementos.size
     }
+
 
 }
