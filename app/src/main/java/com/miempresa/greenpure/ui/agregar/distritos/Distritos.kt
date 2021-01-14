@@ -6,13 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.DefaultRetryPolicy
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.miempresa.greenpure.MainActivity2
 import com.miempresa.greenpure.R
 import com.miempresa.greenpure.ui.repositorio.LugarRepositorio
+import org.json.JSONException
+import org.json.JSONObject
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,9 +32,12 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class Distritos : Fragment(), OnClickListenerDistrito {
-    // TODO: Rename and change types of parameters
+
     private var param1: String? = null
     private var param2: String? = null
+
+    lateinit var listaDistrito: RecyclerView
+    val MY_DEFAULT_TIMEOUT = 15000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,34 +52,75 @@ class Distritos : Fragment(), OnClickListenerDistrito {
         // Inflate the layout for this fragment
         val view =
                 inflater.inflate(R.layout.fragment_distritos, container, false)
-        var listaDistrito: RecyclerView = view.findViewById(R.id.listaDistritos)
+        var ciudadDistrito: TextView = view.findViewById(R.id.lblCiudadAgregar)
+        listaDistrito = view.findViewById(R.id.listaDistritos)
         listaDistrito.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         listaDistrito.layoutManager = LinearLayoutManager(context)
 
-        var llenarLista = ArrayList<ElementosDistrito>()
-        llenarLista.add(ElementosDistrito(1, "Cerro Colorado", "Arequipa, Peru", "25"))
-        llenarLista.add(ElementosDistrito(2, "Arequipa", "Arequipa, Peru", "28"))
-        llenarLista.add(ElementosDistrito(3, "Selva Alegre", "Arequipa, Peru", "20"))
-        llenarLista.add(ElementosDistrito(4, "Cayma", "Arequipa, Peru", "20"))
-
-        val adapter = AdaptadorDistrito(this, llenarLista)
-        listaDistrito.adapter = adapter
-
-        var lugarRepositorio = LugarRepositorio()
-        var listaLugares = lugarRepositorio.listar()
-
-        if (listaLugares.isNotEmpty()){
-            for (i in 0 until listaLugares.size){
-                println("Ubicaciones: "+listaLugares[i].distrito)
-            }
-        }
+        //val adapter = AdaptadorDistrito(this, llenarLista)
+        //listaDistrito.adapter = adapter
 
         if(arguments != null){
             val recibidoIdCiudad = requireArguments().getString("idCiudad")
             val recibidoCiudad = requireArguments().getString("ciudad")
+            var URL: String = getString(R.string.urlAPI) + "/ciudad/"+recibidoIdCiudad
+            ciudadDistrito.text = "Ciudad: $recibidoCiudad"
+            getData(URL)
         }
 
         return view
+    }
+
+    fun getData(URL: String){
+        val queue = Volley.newRequestQueue(context)
+        val stringRequest = JsonObjectRequest(Request.Method.GET, URL, null,
+                { response ->
+                    try {
+
+                        returnData(response)
+                        //progressBarAire.visibility = View.GONE
+
+                    } catch (e: JSONException) {
+                        Toast.makeText(
+                                context,
+                                "Error al obtener los datos",
+                                Toast.LENGTH_LONG
+                        ).show()
+                        e.printStackTrace()
+                    }
+                }, {
+            println(it)
+            Toast.makeText(
+                    context,
+                    "Verifique que esta conectado a internet",
+                    Toast.LENGTH_LONG
+            ).show()
+        })
+
+        stringRequest.setRetryPolicy(DefaultRetryPolicy(
+                MY_DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT))
+
+        queue.add(stringRequest)
+    }
+
+    fun returnData(response: JSONObject){
+        var llenarLista = ArrayList<ElementosDistrito>()
+        var distritos = response.getJSONArray("distritos")
+
+        for (i in 0 until distritos.length()) {
+            val distrito: JSONObject = distritos[i] as JSONObject
+            var id = distrito.getString("idDistrito").toInt()
+            var nombre = distrito.getString("nombre")
+            var ciudadNombre = distrito.getString("ciudadNombre")
+            var calidad = distrito.getString("calidad")
+            llenarLista.add(ElementosDistrito(id, nombre, "Peru, $ciudadNombre", calidad))
+        }
+
+        val adapter = AdaptadorDistrito( this, llenarLista)
+        listaDistrito.adapter = adapter
+
     }
 
     companion object {

@@ -7,7 +7,16 @@
     android:orientation="vertical"
     tools:context=".ui.aire.AireFragment">
 
+    <ProgressBar
+        android:id="@+id/progressBarAire"
+        style="?android:attr/progressBarStyle"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="50dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"/>
+
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
