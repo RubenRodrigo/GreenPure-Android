@@ -44,8 +44,8 @@ class InfoAire : AppCompatActivity(){
         setContentView(R.layout.activity_info_aire)
         val bundle: Bundle? = intent.extras
         if (bundle != null) {
-            var id = bundle.getString("id").toString()
-            var URL: String = getString(R.string.urlAPI) + "/distrito/1"
+            var idDistrito = bundle.getString("idDistrito").toString()
+            var URL: String = getString(R.string.urlAPI) + "/distritoDatos/"+idDistrito
             obtenerData(URL)
         }
     }

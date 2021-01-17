@@ -67,7 +67,7 @@ class Ciudades : Fragment(), OnClickListenerCiudad {
                 { response ->
                     try {
 
-                        returnData(response)
+                        setData(response)
                         //progressBarAire.visibility = View.GONE
 
                     } catch (e: JSONException) {
@@ -94,7 +94,7 @@ class Ciudades : Fragment(), OnClickListenerCiudad {
         queue.add(stringRequest)
     }
 
-    fun returnData(response: JSONArray){
+    fun setData(response: JSONArray){
         var llenarLista = ArrayList<ElementosCiudad>()
         for (i in 0 until response.length()){
             val id = response.getJSONObject(i).getString("idCiudad").toInt()
