@@ -21,13 +21,15 @@ import kotlinx.android.synthetic.main.activity_info_aire.*
 class AdaptadorCardAire(val ListaElementos: ArrayList<Elementos>): RecyclerView.Adapter<AdaptadorCardAire.ViewHolder>(){
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val fTemperatura = itemView.findViewById<TextView>(R.id.lblTemperatura)
-        val fEstado = itemView.findViewById<TextView>(R.id.lblEstado)
-        val fImagen = itemView.findViewById<ImageView>(R.id.imgEstado)
-        val fCalidad = itemView.findViewById<TextView>(R.id.lblCalidad)
+        //val fTemperatura = itemView.findViewById<TextView>(R.id.lblTemperatura)
         val fCiudad = itemView.findViewById<TextView>(R.id.lblCiudad)
-        val fDepartamento = itemView.findViewById<TextView>(R.id.lblDepartamento)
-        val fFecha = itemView.findViewById<TextView>(R.id.lblUltimaActualizacion)
+        val fDistrito = itemView.findViewById<TextView>(R.id.lblDistrito)
+        val fHumedad = itemView.findViewById<TextView>(R.id.lblHumedadActualizado)
+        val fTemperatura = itemView.findViewById<TextView>(R.id.lblTemperatura)
+        val fHora = itemView.findViewById<TextView>(R.id.lblHora)
+        val fCalidadAVG = itemView.findViewById<TextView>(R.id.lblCalidadAVG)
+        val fEstadoCalidad = itemView.findViewById<TextView>(R.id.lblEstadoCalidad)
+        val fImagenCalidad = itemView.findViewById<ImageView>(R.id.imgEstadoCalidad)
         val fContenedor = itemView.findViewById<LinearLayout>(R.id.contenedorResumen)
     }
 
@@ -37,12 +39,14 @@ class AdaptadorCardAire(val ListaElementos: ArrayList<Elementos>): RecyclerView.
     }
 
     override fun onBindViewHolder(holder: AdaptadorCardAire.ViewHolder, position: Int) {
-        holder?.fTemperatura?.text=ListaElementos[position].temperatura.toString()
-        holder?.fEstado?.text= ListaElementos[position].calidadEstado
-        holder?.fCalidad?.text= ListaElementos[position].calidad.toString()
-        holder?.fImagen?.setImageResource(ListaElementos[position].imagen)
-        holder?.fCiudad?.text=ListaElementos[position].ubicacion
-        holder?.fDepartamento?.text=ListaElementos[position].lugar
+        holder?.fCiudad?.text= ListaElementos[position].ciudad
+        holder?.fDistrito?.text= ListaElementos[position].distrito
+        holder?.fHumedad?.text= ListaElementos[position].humedad.toString()
+        holder?.fTemperatura?.text= ListaElementos[position].temperatura.toString()
+        holder?.fHora?.text= ListaElementos[position].hora
+        holder?.fCalidadAVG?.text = ListaElementos[position].calidadAVG.toString()
+        holder?.fEstadoCalidad?.text = ListaElementos[position].calidadEstado
+        holder?.fImagenCalidad?.setImageResource(ListaElementos[position].imagen)
 
         when(ListaElementos[position].calidadEstado){
             "Bueno" -> holder?.fContenedor.setBackgroundColor(ContextCompat.getColor(holder?.itemView.context, R.color.good))
@@ -53,7 +57,7 @@ class AdaptadorCardAire(val ListaElementos: ArrayList<Elementos>): RecyclerView.
 
         holder.itemView.setOnClickListener(){
             val intent = Intent(holder.itemView.context, InfoAire::class.java)
-            intent.putExtra("id", ListaElementos[position].id.toString())
+            intent.putExtra("idDistrito", ListaElementos[position].idDistrito.toString())
             holder.itemView.context.startActivity(intent)
         }
     }
